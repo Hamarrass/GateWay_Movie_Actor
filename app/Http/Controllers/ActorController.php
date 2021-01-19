@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 use App\Services\ActorService;
 
 /**
- * Author Controller
+ * Actor Controller
  */
 class ActorController extends Controller
 {
@@ -18,7 +18,6 @@ class ActorController extends Controller
     public $actorService;
 
     /**
-     * Create a new controller instance.
      *
      * @return void
      */
@@ -28,7 +27,6 @@ class ActorController extends Controller
     }
 
     /**
-     * Return the list of authors
      *
      * @return Illuminate\Http\Response
      */
@@ -38,11 +36,10 @@ class ActorController extends Controller
     {
         $allActorsJson  = $this->successResponse($this->actorService->allActors());
         $allActors =json_decode($allActorsJson->content(), true);
-        return view('Actor.actors',compact('allActors'));
+        return view('actor.actors',compact('allActors'));
     }
 
     /**
-     * Create an author.
      *
      * @param Illuminate
      * @return Illuminate\Http\Response
@@ -50,31 +47,55 @@ class ActorController extends Controller
     //add an actor
     public function create(Request $request)
     {
-        return $this->successResponse($this->actorService->createActor($request->all(), Response::HTTP_CREATED));
+
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+       $this->successResponse($this->actorService->createActor($request->all(), Response::HTTP_CREATED));
+       return redirect()->route('actors');
     }
 
     /**
-     * Show an author.
+     * Show an Actor.
      *
      * @return Illuminate\Http\Response
      */
+
     public function read($id)
     {
-        return $this->successResponse($this->actorService->readOneActor($id));
+        $actorJson  = $this->successResponse($this->actorService->readOneActor($id));
+        $actor =json_decode($actorJson->content(), true);
+        return view('actor.actor',compact('actor'));
     }
 
+
+ /**
+     * edit an actor.
+     *
+     * @return Illuminate\Http\Response
+*/
+    public function edit($id)
+    {
+        $actorJson  = $this->successResponse($this->actorService->readOneActor($id));
+        $actor =json_decode($actorJson->content(), true);
+        return  view('actor.editactor',compact('actor'));
+    }
+
+
     /**
-     * Update an author.
+     * Update an actor.
      *
      * @return Illuminate\Http\Response
      */
-    public function updateActor(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        return $this->successResponse($this->actorService->updateActor($request->all(), $id));
+        $this->successResponse($this->actorService->updateActor($request->only('name'), $id));
+        return  redirect()->route('actors');
     }
 
     /**
-     * Delete an author.
+     * Delete an Actor.
      *
      * @return Illuminate\Http\Response
      */

@@ -28,9 +28,11 @@ $router->group(['prefix' => 'gateWayApi'], function () use ($router) {
 
        $router->get('actor/details/{id}', ['as'=>'actorDetails','uses' => 'ActorController@read']);
 
-       $router->post('actors/ajouter', ['uses' => 'ActorController@create']);
+       $router->post('actor/ajouter', ['as'=>'addActor','uses' => 'ActorController@create']);
 
-       $router->put('actor/modifier/{id}', ['uses' => 'ActorController@update']);
+       $router->get('actor/edit/{id}', ['as'=>'editActor','uses' => 'ActorController@edit']);
+
+       $router->put('actor/modifier/{id}', ['as'=>'updateactor','uses' => 'ActorController@update']);
 
        $router->delete('actor/supprimer/{id}', ['uses' => 'ActorController@delete']);
 

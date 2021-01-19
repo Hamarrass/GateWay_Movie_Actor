@@ -27,7 +27,7 @@ class ActorService
 
     public function createActor($data)
     {
-        return $this->performRequest('POST', '/api/actors', $data);
+        return $this->performRequest('POST', '/api/actor', $data);
     }
 
     public function readOneActor($actor)
@@ -37,11 +37,11 @@ class ActorService
 
     public function updateActor($data, $actor)
     {
-        return $this->performRequest('PUT', "/api/actors/{$actor}", $data);
+        return $this->performRequest('PUT', "/api/actor/{$actor}", $data);
     }
 
     public function deleteActor($actor)
     {
-        return $this->performRequest('DELETE', "/actors/{$actor}");
+        return $this->performRequest('DELETE', "/actor/{$actor}");
     }
 }

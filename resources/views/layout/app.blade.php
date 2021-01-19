@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Movies</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{{-- model --}}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{{-- end model --}}
 <style>
 body {font-family: "Times New Roman", Georgia, Serif;}
 h1, h2, h3, h4, h5, h6 {
@@ -19,8 +24,8 @@ h1, h2, h3, h4, h5, h6 {
     <a href="#home" class="w3-bar-item w3-button">Movies</a>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">About</a>
-      <a href="#menu" class="w3-bar-item w3-button">Menu</a>
+      <a href="#about" class="w3-bar-item w3-button">Movies</a>
+      <a href="#menu" class="w3-bar-item w3-button">Actors</a>
       <a href="#contact" class="w3-bar-item w3-button">Contact</a>
     </div>
   </div>
