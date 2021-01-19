@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Services;
-
 use App\Traits\ConsumesExternalServices;
+use Illuminate\Support\Facades\Config;
+
 
 class ActorService
 {
@@ -13,11 +14,9 @@ class ActorService
 
     public function __construct()
     {
-        //$this->baseUri = config('services.actors.base_uri');
-        //$this->secret  = config('services.actors.secret');
+        $this->baseUri = Config::get('services.actors.base_uri');
+        $this->secret  = Config::get('services.actors.secret');
 
-        $this->baseUri = 'http://localhost:8080';
-        $this->secret  = '20nomalis21';
     }
 
     public function allActors()
@@ -42,6 +41,6 @@ class ActorService
 
     public function deleteActor($actor)
     {
-        return $this->performRequest('DELETE', "/actor/{$actor}");
+        return $this->performRequest('DELETE', "/api/actor/{$actor}");
     }
 }

@@ -7,11 +7,25 @@
     <div class="w3-row w3-padding-64" id="about">
           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Ajouter un actor</button>
         <h2>List des acteurs </h2>
-        <ul class="list-group">
-          @foreach ($allActors as $actor)
-                 <li class="list-group-item"><a href="{{route('actorDetails',['id'=>$actor['id']])}}">{{$actor['name']}}</a> <a style="color:black " href="{{route('editActor',['id'=>$actor['id']])}}">Edit</a></li>
-          @endforeach
-        </ul>
+
+        <div style="margin-left: 20%;margin-right: 20%; ">
+            <table class="table">
+                @foreach ($allActors as $actor)
+                        <tr>
+                            <td style="width: 75%"> <a href="{{route('actorDetails',['id'=>$actor['id']])}}">{{$actor['name']}}</a></td>
+                            <td><a href="{{route('editActor',['id'=>$actor['id']])}}"> <span style="color: black"> Edit </span></a></td>
+                            <td>
+                                <form action="{{route('deleteActor',['id'=>$actor['id']])}}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="submit" value="delete">
+                                </form>
+                            </td>
+                        </tr>
+
+                @endforeach
+            </table>
+        </div>
+
     </div>
 
   </div>

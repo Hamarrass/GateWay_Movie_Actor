@@ -99,8 +99,9 @@ class ActorController extends Controller
      *
      * @return Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        return $this->successResponse($this->actorService->deleteActor($id));
+        $this->successResponse($this->actorService->deleteActor($id));
+        return  redirect()->route('actors');
     }
 }

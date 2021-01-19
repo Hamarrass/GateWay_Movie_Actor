@@ -23,7 +23,7 @@ $router->get('/', [
 ]);
 
 //route for actors
-$router->group(['prefix' => 'gateWayApi'], function () use ($router) {
+$router->group([''], function () use ($router) {
        $router->get('actors',['as'=>'actors','uses' => 'ActorController@all']);
 
        $router->get('actor/details/{id}', ['as'=>'actorDetails','uses' => 'ActorController@read']);
@@ -32,9 +32,9 @@ $router->group(['prefix' => 'gateWayApi'], function () use ($router) {
 
        $router->get('actor/edit/{id}', ['as'=>'editActor','uses' => 'ActorController@edit']);
 
-       $router->put('actor/modifier/{id}', ['as'=>'updateactor','uses' => 'ActorController@update']);
+       $router->put('actor/modifier/{id}', ['as'=>'updateActor','uses' => 'ActorController@update']);
 
-       $router->delete('actor/supprimer/{id}', ['uses' => 'ActorController@delete']);
+       $router->delete('actor/supprimer/{id}', ['as'=>'deleteActor','uses' => 'ActorController@delete']);
 
    });
 
