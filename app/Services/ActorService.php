@@ -13,33 +13,35 @@ class ActorService
 
     public function __construct()
     {
-        $this->baseUri = config('services.actors.base_uri');
-        dd($this->baseUri);
-        $this->secret  = config('services.actors.secret');
+        //$this->baseUri = config('services.actors.base_uri');
+        //$this->secret  = config('services.actors.secret');
+
+        $this->baseUri = 'http://localhost:8080';
+        $this->secret  = '20nomalis21';
     }
 
     public function allActors()
     {
-        return $this->performRequest('GET', '/actors');
+        return $this->performRequest('GET', '/api/actors');
     }
 
     public function createActor($data)
     {
-        return $this->performRequest('POST', '/actors', $data);
+        return $this->performRequest('POST', '/api/actors', $data);
     }
 
     public function readOneActor($actor)
     {
-        return $this->performRequest('GET', "/actors/{$actor}");
+        return $this->performRequest('GET', "/api/actor/{$actor}");
     }
 
     public function updateActor($data, $actor)
     {
-        return $this->performRequest('PUT', "/authors/{$actor}", $data);
+        return $this->performRequest('PUT', "/api/actors/{$actor}", $data);
     }
 
     public function deleteActor($actor)
     {
-        return $this->performRequest('DELETE', "/authors/{$actor}");
+        return $this->performRequest('DELETE', "/actors/{$actor}");
     }
 }

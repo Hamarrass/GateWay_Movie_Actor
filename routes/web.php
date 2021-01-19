@@ -12,19 +12,21 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
+/*
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+*/
 
-
-
+$router->get('/', [
+    'as' => 'home', 'uses' => 'HomeController@home'
+]);
 
 //route for actors
 $router->group(['prefix' => 'gateWayApi'], function () use ($router) {
-       $router->get('actors',  ['uses' => 'ActorController@all']);
+       $router->get('actors',['as'=>'actors','uses' => 'ActorController@all']);
 
-       $router->get('actor/details/{id}', ['uses' => 'ActorController@read']);
+       $router->get('actor/details/{id}', ['as'=>'actorDetails','uses' => 'ActorController@read']);
 
        $router->post('actors/ajouter', ['uses' => 'ActorController@create']);
 

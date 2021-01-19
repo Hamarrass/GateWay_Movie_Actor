@@ -32,9 +32,13 @@ class ActorController extends Controller
      *
      * @return Illuminate\Http\Response
      */
+
+     //optain all actor
     public function all()
     {
-        return $this->successResponse($this->actorService->allActors());
+        $allActorsJson  = $this->successResponse($this->actorService->allActors());
+        $allActors =json_decode($allActorsJson->content(), true);
+        return view('Actor.actors',compact('allActors'));
     }
 
     /**
@@ -43,6 +47,7 @@ class ActorController extends Controller
      * @param Illuminate
      * @return Illuminate\Http\Response
      */
+    //add an actor
     public function create(Request $request)
     {
         return $this->successResponse($this->actorService->createActor($request->all(), Response::HTTP_CREATED));
