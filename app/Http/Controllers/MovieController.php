@@ -11,7 +11,7 @@ use App\Services\ActorService;
 /**
  * Actor Controller
  */
-class ActorController extends Controller
+class MovieController extends Controller
 {
     use ApiResponser;
 
@@ -31,7 +31,7 @@ class ActorController extends Controller
      * @return Illuminate\Http\Response
      */
 
-     //optain all actor
+     //optain all movies
     public function all()
     {
         $allActorsJson  = $this->successResponse($this->actorService->allActors());
@@ -45,20 +45,23 @@ class ActorController extends Controller
      * @param Illuminate
      * @return Illuminate\Http\Response
      */
-    //add an actor
+    //add an a movie
     public function create(Request $request)
     {
 
         $this->validate($request, [
             'name' => 'required',
+            'year' => 'required',
+            'actors' => 'required',
         ]);
+
 
        $this->successResponse($this->actorService->createActor($request->all(), Response::HTTP_CREATED));
        return redirect()->route('actors');
     }
 
     /**
-     * Show an Actor.
+     * Show a movie.
      *
      * @return Illuminate\Http\Response
      */
@@ -72,7 +75,7 @@ class ActorController extends Controller
 
 
  /**
-     * edit an actor.
+     * edit an movie.
      *
      * @return Illuminate\Http\Response
 */
@@ -85,7 +88,7 @@ class ActorController extends Controller
 
 
     /**
-     * Update an actor.
+     * Update a movie.
      *
      * @return Illuminate\Http\Response
      */
@@ -96,7 +99,7 @@ class ActorController extends Controller
     }
 
     /**
-     * Delete an Actor.
+     * Delete a movie.
      *
      * @return Illuminate\Http\Response
      */

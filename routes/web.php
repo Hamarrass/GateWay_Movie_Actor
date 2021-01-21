@@ -40,7 +40,7 @@ $router->group([''], function () use ($router) {
 
 
    //route for films
-    $router->group(['prefix' => 'gateway'], function () use ($router) {
+    $router->group([''], function () use ($router) {
        $router->get('films',  ['uses' => 'MovieController@all']);
 
        $router->post('film/ajouter', ['uses' => 'MovieController@create']);
