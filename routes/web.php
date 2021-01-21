@@ -41,15 +41,16 @@ $router->group([''], function () use ($router) {
 
    //route for films
     $router->group([''], function () use ($router) {
-       $router->get('films',  ['uses' => 'MovieController@all']);
 
-       $router->post('film/ajouter', ['uses' => 'MovieController@create']);
+       $router->get('films',  ['as'=>'movies','uses' => 'MovieController@all']);
 
-       $router->get('film/details/{id}', ['uses' => 'MovieController@read']);
+       $router->post('film/ajouter', ['as'=>'addMovie','uses' => 'MovieController@create']);
 
-       $router->put('film/modifier/{id}', ['uses' => 'MovieController@update']);
+       $router->get('film/details/{id}', ['as'=>'movieDetails','uses' => 'MovieController@read']);
 
-       $router->delete('film/supprimer/{id}', ['uses' => 'MovieController@delete']);
+       $router->put('film/modifier/{id}', ['as'=>'updateMovie','uses' => 'MovieController@update']);
+
+       $router->delete('film/supprimer/{id}', ['as'=>'deleteMovie','uses' => 'MovieController@delete']);
 
        $router->get('films/{année}', ['uses' => 'MovieController@moviesByYear']);
 
