@@ -45,7 +45,11 @@
                  <label>Year</label>
                  <input type="text" name="name" >
                  <label>Actors</label>
-                 <input type="text" name="name" >
+                 <select name="" id="">
+                   @foreach ($allActors as $allActor)
+                      <option value="">{{$allActor['name']}}</option>
+                   @endforeach
+                 </select>
                  <button type="submit" >Submite</button>
               </form>
         </div>

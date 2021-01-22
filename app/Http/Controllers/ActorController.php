@@ -34,6 +34,8 @@ class ActorController extends Controller
      //optain all actor
     public function all()
     {
+
+
         $allActorsJson  = $this->successResponse($this->actorService->allActors());
 
         $allActors =json_decode($allActorsJson->content(), true);

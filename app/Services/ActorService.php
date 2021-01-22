@@ -11,17 +11,22 @@ class ActorService
 
     public $baseUri;
     public $secret;
+    public $token;
 
     public function __construct()
     {
         $this->baseUri = Config::get('services.actors.base_uri');
-        $this->secret  = Config::get('services.actors.secret');
+        $this->secret  = Config::get('services.actors.secret')[0]->token;
+       // dd($this->secret);
 
     }
 
     public function allActors()
     {
-        return $this->performRequest('GET', '/api/actors');
+        $token = $this->auth('POST', '/oauth/token');
+        $this->token=json_decode($token,true)['access_token'];
+        //dd(json_decode($token,true)['access_token']);
+        return   $this->performRequest('GET', '/api/actors');
     }
 
     public function createActor($data)

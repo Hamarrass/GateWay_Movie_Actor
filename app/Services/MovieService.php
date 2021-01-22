@@ -15,12 +15,13 @@ class MovieService
     public function __construct()
     {
         $this->baseUri = Config::get('services.movies.base_uri');
-        $this->secret  = Config::get('services.movies.secret');
-
+        $this->secret  = Config::get('services.movies.secret')[0]->token;
     }
 
     public function allMovies()
     {
+        $token = $this->auth('POST', '/oauth/token');
+        $this->token=json_decode($token,true)['access_token'];
         return $this->performRequest('GET', '/api/movies');
     }
 
