@@ -13,15 +13,14 @@
                 @foreach ($allMovies as $movie)
                         <tr>
                             <td style="width: 75%"> <a href="{{route('movieDetails',['id'=>$movie['id']])}}">{{$movie['name']}}</a></td>
-                            <td><a href="{{route('editmovie',['id'=>$movie['id']])}}"> <span style="color: black"> Edit </span></a></td>
+                            <td><a href="{{route('editMovie',['id'=>$movie['id']])}}"> <span style="color: black"> Edit </span></a></td>
                             <td>
-                                <form action="{{route('deletemovie',['id'=>$movie['id']])}}" method="post">
+                                <form action="{{route('deleteMovie',['id'=>$movie['id']])}}" method="post">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="submit" value="delete">
                                 </form>
                             </td>
                         </tr>
-
                 @endforeach
             </table>
         </div>
@@ -42,6 +41,10 @@
         <div class="modal-body">
               <form action="{{route('addMovie')}}" method="post">
                  <label>Name</label>
+                 <input type="text" name="name" >
+                 <label>Year</label>
+                 <input type="text" name="name" >
+                 <label>Actors</label>
                  <input type="text" name="name" >
                  <button type="submit" >Submite</button>
               </form>

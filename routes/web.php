@@ -48,6 +48,8 @@ $router->group([''], function () use ($router) {
 
        $router->get('film/details/{id}', ['as'=>'movieDetails','uses' => 'MovieController@read']);
 
+       $router->get('movie/edit/{id}', ['as'=>'editMovie','uses' => 'MovieController@edit']);
+
        $router->put('film/modifier/{id}', ['as'=>'updateMovie','uses' => 'MovieController@update']);
 
        $router->delete('film/supprimer/{id}', ['as'=>'deleteMovie','uses' => 'MovieController@delete']);

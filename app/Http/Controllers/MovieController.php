@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Services\ActorService;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,14 +16,16 @@ class MovieController extends Controller
     use ApiResponser;
 
     public $movieService;
+    public $actorService;
 
     /**
      *
      * @return void
      */
-    public function __construct(MovieService $movieService)
+    public function __construct(MovieService $movieService ,ActorService $actorService)
     {
         $this->movieService = $movieService;
+        $this->actorService = $actorService;
     }
 
     /**
@@ -35,9 +37,12 @@ class MovieController extends Controller
     public function all()
     {
 
+        $allActorsJson  = $this->successResponse($this->actorService->allActors());
+        $allActors =json_decode($allActorsJson->content(), true);
+
         $allMoviesJson  = $this->successResponse($this->movieService->allMovies());
         $allMovies =json_decode($allMoviesJson->content(), true);
-        return view('movie.movies',compact('allMovies'));
+        return view('movie.movies',compact('allMovies','allActors'));
     }
 
     /**
@@ -48,13 +53,6 @@ class MovieController extends Controller
     //add an a movie
     public function create(Request $request)
     {
-
-        $this->validate($request, [
-            'name' => 'required',
-            'year' => 'required',
-            'actors' => 'required',
-        ]);
-
 
        $this->successResponse($this->movieService->createMovie($request->all(), Response::HTTP_CREATED));
        return redirect()->route('movies');

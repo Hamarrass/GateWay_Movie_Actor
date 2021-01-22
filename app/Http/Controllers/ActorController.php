@@ -48,7 +48,6 @@ class ActorController extends Controller
     //add an actor
     public function create(Request $request)
     {
-
         $this->validate($request, [
             'name' => 'required',
         ]);

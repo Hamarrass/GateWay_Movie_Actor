@@ -26,21 +26,22 @@ class MovieService
 
     public function createMovie($data)
     {
-        return $this->performRequest('POST', '/api/actor', $data);
+
+        return $this->performRequest('POST', '/api/movie/create', $data);
     }
 
     public function readOneMovie($id)
     {
-        return $this->performRequest('GET', "/api/actor/{$id}");
+        return $this->performRequest('GET', "/api/movie/{$id}");
     }
 
     public function updateMovie($data, $id)
     {
-        return $this->performRequest('PUT', "/api/actor/{$id}", $data);
+        return $this->performRequest('PUT', "/api/movie/{$id}", $data);
     }
 
     public function deleteMovie($id)
     {
-        return $this->performRequest('DELETE', "/api/actor/{$id}");
+        return $this->performRequest('DELETE', "/api/movie/{$id}");
     }
 }
