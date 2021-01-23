@@ -16,18 +16,18 @@ class MovieService
     {
         $this->baseUri = Config::get('services.movies.base_uri');
         $this->secret  = Config::get('services.movies.secret')[0]->token;
+        $token       = $this->auth('POST','/oauth/token');
+        $this->token = json_decode($token,true)['access_token'];
     }
 
     public function allMovies()
     {
-        $token = $this->auth('POST', '/oauth/token');
-        $this->token=json_decode($token,true)['access_token'];
+
         return $this->performRequest('GET', '/api/movies');
     }
 
     public function createMovie($data)
     {
-
         return $this->performRequest('POST', '/api/movie/create', $data);
     }
 
@@ -38,7 +38,7 @@ class MovieService
 
     public function updateMovie($data, $id)
     {
-        return $this->performRequest('PUT', "/api/movie/{$id}", $data);
+       return $this->performRequest('PUT', "/api/movie/{$id}", $data);
     }
 
     public function deleteMovie($id)

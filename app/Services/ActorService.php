@@ -17,14 +17,12 @@ class ActorService
     {
         $this->baseUri = Config::get('services.actors.base_uri');
         $this->secret  = Config::get('services.actors.secret')[0]->token;
-       // dd($this->secret);
-
+       $token = $this->auth('POST', '/oauth/token');
+       $this->token=json_decode($token,true)['access_token'];
     }
 
     public function allActors()
     {
-        $token = $this->auth('POST', '/oauth/token');
-        $this->token=json_decode($token,true)['access_token'];
         //dd(json_decode($token,true)['access_token']);
         return   $this->performRequest('GET', '/api/actors');
     }

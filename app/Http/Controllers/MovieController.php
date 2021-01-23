@@ -53,7 +53,6 @@ class MovieController extends Controller
     //add an a movie
     public function create(Request $request)
     {
-
        $this->successResponse($this->movieService->createMovie($request->all(), Response::HTTP_CREATED));
        return redirect()->route('movies');
     }

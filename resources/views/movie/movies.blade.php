@@ -6,7 +6,7 @@
     <!-- About Section -->
     <div class="w3-row w3-padding-64" id="about">
           <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Ajouter un movie</button>
-        <h2>List des acteurs </h2>
+        <h2>List des movies </h2>
 
         <div style="margin-left: 20%;margin-right: 20%; ">
             <table class="table">
@@ -43,11 +43,11 @@
                  <label>Name</label>
                  <input type="text" name="name" >
                  <label>Year</label>
-                 <input type="text" name="name" >
+                 <input type="text" name="year" >
                  <label>Actors</label>
-                 <select name="" id="">
+                 <select name="actors[]" id="" multiple>
                    @foreach ($allActors as $allActor)
-                      <option value="">{{$allActor['name']}}</option>
+                      <option value="{{$allActor['name']}}">{{$allActor['name']}}</option>
                    @endforeach
                  </select>
                  <button type="submit" >Submite</button>
