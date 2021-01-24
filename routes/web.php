@@ -56,5 +56,7 @@ $router->group([''], function () use ($router) {
 
        $router->get('films/{année}', ['uses' => 'MovieController@moviesByYear']);
 
-     /*$router->get('film/actor/{actor}', ['uses' => 'MovieController@actorMovies']);*/
+       $router->get('acteur/{id}/films', ['as'=>'actorMovies','uses' => 'MovieController@actorMovies']);
+
  });
+

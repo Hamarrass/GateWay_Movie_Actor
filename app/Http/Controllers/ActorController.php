@@ -37,7 +37,6 @@ class ActorController extends Controller
 
 
         $allActorsJson  = $this->successResponse($this->actorService->allActors());
-
         $allActors =json_decode($allActorsJson->content(), true);
         return view('actor.actors',compact('allActors'));
     }
@@ -50,6 +49,7 @@ class ActorController extends Controller
     //add an actor
     public function create(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required',
         ]);

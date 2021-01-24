@@ -9,6 +9,7 @@
         <ul class="list-group">
           <li class="list-group-item">Id  :{{$actor['id']}}</li>
           <li class="list-group-item">Nam :{{$actor['name']}}</li>
+          <li class="list-group-item"><a href="{{route('actorMovies',['id'=>$actor['id']])}}"> Ses films</a> </li>
         </ul>
     </div>
 

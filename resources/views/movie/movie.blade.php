@@ -8,15 +8,22 @@
         <h2>Details d'un Movie </h2>
         <ul class="list-group">
           <li class="list-group-item">Id  :{{$movie['id']}}</li>
-          <li class="list-group-item">Nam :{{$movie['name']}}</li>
+          <li class="list-group-item">Nom :{{$movie['name']}}</li>
         </ul>
 
         <h2>Les acteurs </h2>
         <ul class="list-group">
-            @foreach(unserialize($movie['actors']) as $actors)
-             <li class="list-group-item">{{$actors}};</li>
-            @endforeach
+            @php
+            $dec = json_decode(unserialize($movie['actors']) );
+
+            for($idx = 0; $idx < count($dec); $idx++){
+                $obj = (Array)$dec[$idx];
+                echo $obj["name"].",";
+            }
+         @endphp
          </ul>
+
+
     </div>
 
   </div>

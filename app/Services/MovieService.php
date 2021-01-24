@@ -18,11 +18,11 @@ class MovieService
         $this->secret  = Config::get('services.movies.secret')[0]->token;
         $token       = $this->auth('POST','/oauth/token');
         $this->token = json_decode($token,true)['access_token'];
+        //dd($this->token);
     }
 
     public function allMovies()
     {
-
         return $this->performRequest('GET', '/api/movies');
     }
 
@@ -44,5 +44,9 @@ class MovieService
     public function deleteMovie($id)
     {
         return $this->performRequest('DELETE', "/api/movie/{$id}");
+    }
+    public function actorsMovie($id)
+    {
+      return $this->performRequest('GET', "/api/movie/actor/{$id}");
     }
 }

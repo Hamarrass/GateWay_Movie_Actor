@@ -36,12 +36,12 @@ class MovieController extends Controller
      //optain all movies
     public function all()
     {
-
         $allActorsJson  = $this->successResponse($this->actorService->allActors());
         $allActors =json_decode($allActorsJson->content(), true);
 
         $allMoviesJson  = $this->successResponse($this->movieService->allMovies());
         $allMovies =json_decode($allMoviesJson->content(), true);
+
         return view('movie.movies',compact('allMovies','allActors'));
     }
 
@@ -91,7 +91,7 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->successResponse($this->movieService->updateMovie($request->only('name'), $id));
+        $this->successResponse($this->movieService->updateMovie($request->all(), $id));
         return  redirect()->route('movies');
     }
 
@@ -104,5 +104,12 @@ class MovieController extends Controller
     {
         $this->successResponse($this->movieService->deleteMovie($id));
         return  redirect()->route('movies');
+    }
+
+    public function actorMovies($id){
+
+        $actorsMovie=$this->successResponse($this->movieService->actorsMovie($id));
+        $actorsMovie =json_decode($actorsMovie->content(), true);
+        return  view('actorsmovie.actrosmovies',compact('actorsMovie'));
     }
 }
